@@ -1,3 +1,9 @@
 .idea
 *.swp
 .DS_Store
+
+__pycache__
+*.py[cod]
+
+.env*
+docker-compose.override*.yml
