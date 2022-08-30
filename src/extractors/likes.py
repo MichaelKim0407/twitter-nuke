@@ -9,7 +9,7 @@ class LikeExtractor(BaseExtractor):
         return 'like'
 
     def _get_id(self, tweet):
-        return tweet[self.data_type]['tweetId']
+        return self._get_content(tweet)['tweetId']
 
 
 if __name__ == '__main__':

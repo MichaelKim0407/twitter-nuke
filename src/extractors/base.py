@@ -32,8 +32,24 @@ class BaseExtractor:
         pretty_dump(data, self.json_file)
         return data
 
+    def _get_content(self, tweet):
+        return tweet[self.data_type]
+
     def _get_id(self, tweet):
         raise NotImplementedError
+
+    @cached_property
+    def id_map_file(self):
+        return os.path.join(self.INTERMEDIATE_DIR, f'{self.data_type}-map.json')
+
+    @cached_property
+    def id_map(self):
+        data = {
+            self._get_id(tweet): self._get_content(tweet)
+            for tweet in self.json_data
+        }
+        pretty_dump(data, self.id_map_file)
+        return data
 
     @cached_property
     def id_list_file(self):
@@ -41,7 +57,7 @@ class BaseExtractor:
 
     @cached_property
     def id_list(self):
-        data = [self._get_id(tweet) for tweet in self.json_data]
+        data = list(self.id_map.keys())
         csv_data = [[tweet_id] for tweet_id in data]
         write_csv(csv_data, self.id_list_file)
         return data
