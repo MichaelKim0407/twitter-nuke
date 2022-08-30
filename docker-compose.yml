@@ -1,10 +1,17 @@
 version: '3.7'
 
+x-service: &service
+  image: python:3.10
+  volumes:
+    - ./src:/src
+    - ./data:/data
+  working_dir: /src
+
 services:
   backup_extract:
-    image: python:3.10
-    volumes:
-      - ./src:/src
-      - ./data:/data
-    working_dir: /src
+    <<: *service
     command: python backup_extract.py
+
+  gen_final:
+    <<: *service
+    command: python gen_final.py

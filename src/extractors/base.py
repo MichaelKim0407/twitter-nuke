@@ -1,7 +1,7 @@
 import os
 from functools import cached_property
 
-from utils.csv import write_csv
+from utils.csv import write_csv_one_col
 from utils.json import js_to_json, pretty_dump
 
 
@@ -58,8 +58,7 @@ class BaseExtractor:
     @cached_property
     def id_list(self):
         data = list(self.id_map.keys())
-        csv_data = [[tweet_id] for tweet_id in data]
-        write_csv(csv_data, self.id_list_file)
+        write_csv_one_col(data, self.id_list_file)
         return data
 
     def __call__(self):
