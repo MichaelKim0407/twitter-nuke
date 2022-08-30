@@ -3,3 +3,8 @@ version: '3.7'
 services:
   backup_extract:
     image: python:3.10
+    volumes:
+      - ./src:/src
+      - ./data:/data
+    working_dir: /src
+    command: python backup_extract.py
