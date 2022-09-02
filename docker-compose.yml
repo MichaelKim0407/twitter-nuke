@@ -1,7 +1,11 @@
 version: '3.7'
 
+x-build: &build
+  context: .
+  dockerfile: dockerfiles/dev.dockerfile
+
 x-service: &service
-  image: python:3.10
+  build: *build
   volumes:
     - ./src:/src
     - ./data:/data
@@ -15,3 +19,9 @@ services:
   gen_final:
     <<: *service
     command: python gen_final.py
+
+  delete:
+    <<: *service
+    env_file:
+      - twitter.env
+    command: python delete.py

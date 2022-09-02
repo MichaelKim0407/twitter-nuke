@@ -12,5 +12,7 @@ class LikeExtractor(BaseExtractor):
         return self._get_content(tweet)['tweetId']
 
 
+like_extractor = LikeExtractor()
+
 if __name__ == '__main__':
-    LikeExtractor()()
+    like_extractor()

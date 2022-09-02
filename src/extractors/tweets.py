@@ -36,5 +36,7 @@ class TweetExtractor(BaseExtractor):
         return super().__call__()
 
 
+tweet_extractor = TweetExtractor()
+
 if __name__ == '__main__':
-    TweetExtractor()()
+    tweet_extractor()

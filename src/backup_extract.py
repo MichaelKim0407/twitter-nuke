@@ -1,11 +1,6 @@
-from extractors.likes import LikeExtractor
-from extractors.tweets import TweetExtractor
-
-
-def main():
-    LikeExtractor()()
-    TweetExtractor()()
-
+from extractors.likes import like_extractor
+from extractors.tweets import tweet_extractor
 
 if __name__ == '__main__':
-    main()
+    like_extractor()
+    tweet_extractor()

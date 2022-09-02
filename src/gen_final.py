@@ -2,14 +2,14 @@ import os.path
 from functools import cached_property
 
 from extractors.base import BaseExtractor
-from extractors.likes import LikeExtractor
-from extractors.tweets import TweetExtractor
+from extractors.likes import like_extractor
+from extractors.tweets import tweet_extractor
 from utils.csv import read_csv_one_col, write_csv_one_col
 
 
 class FinalListGenerator:
     DATA_DIR = os.path.join(BaseExtractor.ROOT_DIR, 'customize')
-    OUTPUT_DIR = os.path.join(BaseExtractor.ROOT_DIR, 'to_delete')
+    OUTPUT_DIR = os.path.join(BaseExtractor.ROOT_DIR, 'to-delete')
 
     os.makedirs(DATA_DIR, exist_ok=True)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -57,10 +57,9 @@ class FinalListGenerator:
         return self.final_list
 
 
-def main():
-    FinalListGenerator(LikeExtractor())()
-    FinalListGenerator(TweetExtractor())()
-
+like_generator = FinalListGenerator(like_extractor)
+tweet_generator = FinalListGenerator(tweet_extractor)
 
 if __name__ == '__main__':
-    main()
+    like_generator()
+    tweet_generator()

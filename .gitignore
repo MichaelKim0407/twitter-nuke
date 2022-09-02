@@ -9,3 +9,5 @@ __pycache__
 docker-compose.override*.yml
 
 /data
+
+twitter.env
