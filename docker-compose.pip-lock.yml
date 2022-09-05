@@ -1,0 +1,9 @@
+services:
+  pip_lock:
+    build:
+      context: dockerfiles
+      dockerfile: pip_lock.dockerfile
+    volumes:
+      - ./requirements:/requirements
+    working_dir: /requirements
+    command: pip-compile requirements.in
